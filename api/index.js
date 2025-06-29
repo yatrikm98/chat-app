@@ -3,7 +3,6 @@ const app = require('./server.js');
 const mongoose = require('mongoose')
 const { createServer } = require('node:http');
 const path = require('path')
-const { fileURLToPath } = require('url')
 const server = createServer(app);
 const express = require('express')
 const io = new Server(server, {

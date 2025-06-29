@@ -10,12 +10,6 @@ dotenv.config()
 const app = express()
 app.use(express.json())
 
-
-app.get('/',(req,res)=>{
-    res.send("App is running perfectly")
-})
-
-
 app.use('/user',userRoutes)
 app.use('/chat',chatRoutes)
 app.use('/message',messageRoutes)
