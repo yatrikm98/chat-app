@@ -9,14 +9,12 @@ export interface Message {
     _id: string;
     chatName: string;
     isGroupChat: boolean;
-    users: [
-      {
+    users: {
         _id: string;
         name: string;
         email: string;
         pic: string;
-      }
-    ];
+      }[];
     latestMessage: string;
   };
   _id: string;

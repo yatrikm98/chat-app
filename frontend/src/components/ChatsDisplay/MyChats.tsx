@@ -14,7 +14,7 @@ import { ChatsAndNotifications } from "../../Interfaces/ChatsAndNotification";
 
 interface MyChats {
   fetchAgain: boolean;
-  setFetchAgain: (value: boolean) => void;
+  setFetchAgain: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const MyChats = ({ fetchAgain, setFetchAgain }: MyChats) => {

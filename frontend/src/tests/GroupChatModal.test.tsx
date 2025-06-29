@@ -6,7 +6,6 @@ import { setupServer } from "msw/node";
 import { http, HttpResponse } from "msw";
 import user from "@testing-library/user-event";
 
-const mockSetChats = jest.fn();
 const mockSetSelectedChat = jest.fn();
 
 const mockUser = {

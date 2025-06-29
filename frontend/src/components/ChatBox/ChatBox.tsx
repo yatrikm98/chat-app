@@ -6,7 +6,7 @@ import SingleChat from "./SingleChat";
 
 interface ChatBox {
   fetchAgain:boolean;
-  setFetchAgain:(value:boolean)=>void
+  setFetchAgain:React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ChatBox = ({fetchAgain,setFetchAgain}:ChatBox) => {

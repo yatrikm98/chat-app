@@ -24,7 +24,7 @@ const ChatPage = () => {
         {user && (
           <ChatBox
             fetchAgain={fetchAgain}
-            setFetchAgain={(value: boolean) => setFetchAgain(value)}
+            setFetchAgain={setFetchAgain}
           />
         )}
       </Box>

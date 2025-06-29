@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Box, Button, Portal, Avatar, Text, Menu } from "@chakra-ui/react";
 import { Tooltip } from "../ui/tooltip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -24,11 +24,6 @@ const Navbar = ({ fetchAgain, setFetchAgain }: NavBar) => {
   const [openSearchUserDrawer, setOpenSearchUserDrawer] =
     useState<boolean>(false);
 
-  // const [chatsHavingNotifications, setChatsHavingNotifications] = useState<
-  //   ChatsAndNotifications[]
-  // >([]);
-
-  // console.log(chatsHavingNotifications,'CHats Having notifications')
 
   const {
     user,
