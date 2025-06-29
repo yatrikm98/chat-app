@@ -1,9 +1,4 @@
-# Ignore environment variables
+node_modules
 .env
-
-# Ignore Node dependencies
-node_modules/
-
-# Ignore build output
-dist/
-build/
+dist
+frontend/dist
