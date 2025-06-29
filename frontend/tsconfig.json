@@ -21,6 +21,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "./jest.setup.ts", "setupTests.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src", "./jest.setup.ts", "setupTests.ts"]
 }
