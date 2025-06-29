@@ -256,7 +256,6 @@ describe("Update Group Chat Model", () => {
     test("Search Users Api", async () => {
       render(
         <UpdateGroupChatModal
-          fetchAllMessages={() => {}}
           fetchAgain
           setFetchAgain={() => {}}
           open
@@ -279,7 +278,6 @@ describe("Update Group Chat Model", () => {
     test("Searched users did not appear", async () => {
       render(
         <UpdateGroupChatModal
-          fetchAllMessages={() => {}}
           fetchAgain
           setFetchAgain={() => {}}
           open
@@ -308,7 +306,6 @@ describe("Update Group Chat Model", () => {
     test("Handle Adding User which is already present", async () => {
       render(
         <UpdateGroupChatModal
-          fetchAllMessages={() => {}}
           fetchAgain
           setFetchAgain={() => {}}
           open
@@ -342,7 +339,6 @@ describe("Update Group Chat Model", () => {
     test("Handle adding user which is not present and the user which is adding is not admin", async () => {
       render(
         <UpdateGroupChatModal
-          fetchAllMessages={() => {}}
           fetchAgain
           setFetchAgain={() => {}}
           open
@@ -380,7 +376,6 @@ describe("Update Group Chat Model", () => {
           setFetchAgain={() => {}}
           open
           onClose={() => {}}
-          fetchAllMessages={() => {}}
         />
       );
       const searchInput = screen.getByPlaceholderText("Add Users");
@@ -406,7 +401,6 @@ describe("Update Group Chat Model", () => {
           setFetchAgain={() => {}}
           open
           onClose={() => {}}
-          fetchAllMessages={() => {}}
         />
       );
       const searchInput = screen.getByPlaceholderText("Add Users");
@@ -441,7 +435,6 @@ describe("Update Group Chat Model", () => {
           setFetchAgain={() => {}}
           open
           onClose={() => {}}
-          fetchAllMessages={() => {}}
         />
       );
       const searchInput = screen.getByPlaceholderText("Add Users");
@@ -479,7 +472,6 @@ describe("Update Group Chat Model", () => {
           setFetchAgain={() => {}}
           open
           onClose={() => {}}
-          fetchAllMessages={() => {}}
         />
       );
       const searchInput = screen.getByPlaceholderText("Add Users");
@@ -516,7 +508,6 @@ describe("Update Group Chat Model", () => {
           setFetchAgain={() => {}}
           open
           onClose={() => {}}
-          fetchAllMessages={() => {}}
         />
       );
       const renameCHatInput = screen.getByPlaceholderText("Chat Name");
@@ -546,7 +537,6 @@ describe("Update Group Chat Model", () => {
           setFetchAgain={() => {}}
           open
           onClose={() => {}}
-          fetchAllMessages={() => {}}
         />
       );
 
