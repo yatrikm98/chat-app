@@ -2,9 +2,8 @@ const { Server } = require('socket.io');
 const app = require('./server.js');
 const mongoose = require('mongoose')
 const { createServer } = require('node:http');
-const path = require('path')
+
 const server = createServer(app);
-const express = require('express')
 const io = new Server(server, {
     pingTimeout: 60000,
     cors: {

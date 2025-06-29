@@ -5,6 +5,8 @@ const { notFound, errorHandler } = require('./middleware/errorMiddleware.js')
 const chatRoutes = require('./routes/chatRoutes.js')
 const messageRoutes = require('./routes/messageRoutes.js')
 const notificationRoutes = require('./routes/notificationRoutes.js')
+const path = require('path')
+
 
 dotenv.config()
 const app = express()
