@@ -21,11 +21,7 @@ mongoose.connect(process.env.MONGO_URI).then(() => {
 // const __dirname = path.dirname(__filename);
 
 
-app.use(
-    express.static(
-        path.join(__dirname, '../frontend/dist')
-    )
-)
+
 
 
 const usersInRoom = {}
@@ -119,9 +115,6 @@ io.on('connection', (socket) => {
 });
 
 
-app.get(/^.*$/, (req, res) => {
-    res.sendFile(path.resolve(__dirname, '..', 'frontend', 'dist', 'index.html'));
-})
 
 
 const PORT = process.env.PORT || 5000
