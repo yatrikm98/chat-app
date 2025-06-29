@@ -38,7 +38,7 @@ const MyChats = ({ fetchAgain, setFetchAgain }: MyChats) => {
         },
       };
 
-      const { data } = await axios.get("/api/chat/", config);
+      const { data } = await axios.get("/api/chat", config);
 
       return data;
     } catch (error) {

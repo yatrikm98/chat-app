@@ -194,7 +194,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: SingleChat) => {
             };
 
             await axios.post(
-              "/api/notification/",
+              "/api/notification",
               {
                 chatId: selectedChat?._id,
                 users: usersOffline,
