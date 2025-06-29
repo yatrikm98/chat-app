@@ -6,13 +6,15 @@
     "lib": ["ES2023"],
     "module": "ESNext",
     "skipLibCheck": true,
-
-    /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
-    "noEmit": true,
+
+    // 👇 Fix: Allow emitting output
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "declarationMap": true,
 
     /* Linting */
     "strict": true,
