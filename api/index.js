@@ -7,24 +7,33 @@ const server = createServer(app);
 const io = new Server(server, {
     pingTimeout: 60000,
     cors: {
-        origin: process.env.RENDER_EXTERNAL_URL || 'http://localhost:5173'
+        origin: [
+            'http://localhost:5173',
+            'https://chat-app-zlfe.onrender.com',
+        ],
     },
 });
 
-mongoose.connect(process.env.MONGO_URI).then(() => {
-    console.log('Connected to Mongodb')
-})
+const connectMongooseAndThenStartServer = async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_URI)
+        console.log('Connected to Mongodb')
+        const PORT = process.env.PORT || 5000
+        server.listen(PORT, () => {
+            console.log(`Port running on ${PORT}`)
+        });
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
 
 
-
-
+connectMongooseAndThenStartServer()
 
 const usersInRoom = {}
-console.log(usersInRoom,"Users In room after just INitializing it")
+console.log(usersInRoom, "Users In room after just INitializing it")
 
 io.on('connection', (socket) => {
     console.log('connected to socket.io');
@@ -116,8 +125,3 @@ io.on('connection', (socket) => {
 
 
 
-const PORT = process.env.PORT || 5000
-
-server.listen(PORT, () => {
-    console.log(`Port running on ${PORT}`)
-});

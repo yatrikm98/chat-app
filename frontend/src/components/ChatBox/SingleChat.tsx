@@ -21,8 +21,11 @@ interface SingleChat {
   fetchAgain: boolean;
   setFetchAgain: React.Dispatch<React.SetStateAction<boolean>>;
 }
+const ENDPOINT: string =
+  import.meta.env.VITE_ENV === "production"
+    ? "https://chat-app-zlfe.onrender.com"
+    : "http://localhost:5000";
 
-const ENDPOINT = "http://localhost:5000";
 let socket: Socket;
 let selectedChatCompare: ChatsAndNotifications | null;
 
@@ -141,7 +144,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: SingleChat) => {
       socket.off("connected");
       socket.off("typing");
       socket.off("stop typing");
-      socket.disconnect()
+      socket.disconnect();
     };
   }, []);
 
