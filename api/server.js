@@ -12,10 +12,10 @@ dotenv.config()
 const app = express()
 app.use(express.json())
 
-app.use('/user', userRoutes)
-app.use('/chat', chatRoutes)
-app.use('/message', messageRoutes)
-app.use('/notification', notificationRoutes)
+app.use('api/user', userRoutes)
+app.use('api/chat', chatRoutes)
+app.use('api/message', messageRoutes)
+app.use('api/notification', notificationRoutes)
 
 app.use(
     express.static(
