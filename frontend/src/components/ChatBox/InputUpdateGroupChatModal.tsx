@@ -10,6 +10,8 @@ import { User } from "../../Interfaces/User";
 import { ChatState } from "../../context/ChatProvider";
 import axios from 'axios'
 import { toaster } from "../ui/toaster";
+import { BASE_API_URL } from "../../handlers/api";
+
 
 
 interface  InputUpdateGroupChatModal {
@@ -39,7 +41,7 @@ const InputUpdateGroupChatModal = ({handleAddUser,loading,setLoading}:InputUpdat
           Authorization: `Bearer ${user?.token}`,
         },
       };
-      const { data } = await axios.get(`/api/user?search=${query}`, config);
+      const { data } = await axios.get(`${BASE_API_URL}/api/user?search=${query}`, config);
       setLoading(false);
       setSearchResult(data);
     } catch (error) {

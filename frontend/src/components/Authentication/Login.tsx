@@ -4,6 +4,7 @@ import { PasswordInput } from "../ui/password-input";
 import { toaster } from "../ui/toaster";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { BASE_API_URL } from "../../handlers/api";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -28,7 +29,7 @@ const Login = () => {
     }
 
     try {
-      const { data } = await axios.post("/api/user/login", {
+      const { data } = await axios.post(`${BASE_API_URL}/api/user/login`, {
         email,
         password,
       });

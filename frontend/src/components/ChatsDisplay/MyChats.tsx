@@ -11,6 +11,8 @@ import { User } from "../../Interfaces/User";
 import { Notification } from "../../Interfaces/Notification";
 import { Chat } from "../../Interfaces/Chat";
 import { ChatsAndNotifications } from "../../Interfaces/ChatsAndNotification";
+import { BASE_API_URL } from "../../handlers/api";
+
 
 interface MyChats {
   fetchAgain: boolean;
@@ -38,7 +40,7 @@ const MyChats = ({ fetchAgain, setFetchAgain }: MyChats) => {
         },
       };
 
-      const { data } = await axios.get("/api/chat", config);
+      const { data } = await axios.get(`${BASE_API_URL}/api/chat`, config);
 
       return data;
     } catch (error) {
@@ -61,7 +63,7 @@ const MyChats = ({ fetchAgain, setFetchAgain }: MyChats) => {
         },
       };
       const { data } = await axios.get(
-        `/api/notification/${user?._id}`,
+        `${BASE_API_URL}/api/notification/${user?._id}`,
         config
       );
       // console.log(data, "Notifications");

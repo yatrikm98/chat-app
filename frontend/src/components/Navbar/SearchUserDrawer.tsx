@@ -14,6 +14,9 @@ import axios from "axios";
 import UsersLoading from "../miscellaneous/SkeletonLoading";
 import UserListItem from "../miscellaneous/UserListItem";
 import {User} from '../../Interfaces/User'
+import { BASE_API_URL } from "../../handlers/api";
+
+
 
 interface SearchUserDrawer {
   open: boolean;
@@ -50,7 +53,7 @@ const SearchUserDrawer = ({ open, onClose }: SearchUserDrawer) => {
         },
       };
 
-      const { data } = await axios.get(`/api/user?search=${search}`, config);
+      const { data } = await axios.get(`${BASE_API_URL}/api/user?search=${search}`, config);
       setSearchResults(data);
       setLoading(false);
     } catch (error) {
@@ -73,7 +76,7 @@ const SearchUserDrawer = ({ open, onClose }: SearchUserDrawer) => {
         },
       };
 
-      const { data } = await axios.post("/api/chat", { userId }, config);
+      const { data } = await axios.post(`${BASE_API_URL}/api/chat`, { userId }, config);
       // console.log(data)
       if(!chatsAndNotifications.find((c)=>c._id === data._id)){
         console.log("If chat found")

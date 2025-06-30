@@ -12,6 +12,8 @@ import { HiUpload } from "react-icons/hi";
 import { toaster } from "../ui/toaster";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { BASE_API_URL } from "../../handlers/api";
+
 
 interface ReceivedDataFromCloudinary {
   url: String;
@@ -90,7 +92,7 @@ const SignUp = () => {
     }
 
     try {
-      const { data } = await axios.post("/api/user", {
+      const { data } = await axios.post(`${BASE_API_URL}/api/user`, {
         name,
         email,
         password,

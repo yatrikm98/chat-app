@@ -13,6 +13,8 @@ import { ChatState } from "../../context/ChatProvider";
 import axios from "axios";
 import { User } from "../../Interfaces/User";
 import InputGroupChatModel from "./InputGroupChatModel";
+import { BASE_API_URL } from "../../handlers/api";
+
 
 interface GroupChatModal {
   open: boolean;
@@ -43,7 +45,7 @@ const GroupChatModal = ({ open, onClose }: GroupChatModal) => {
         },
       };
       const { data } = await axios.post(
-        "/api/chat/group",
+        `${BASE_API_URL}/api/chat/group`,
         {
           name: groupChatName,
           users: JSON.stringify(selectedUsers.map((u) => u._id)),

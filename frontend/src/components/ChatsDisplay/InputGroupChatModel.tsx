@@ -11,6 +11,8 @@ import {
   Input,
   Box,
 } from "@chakra-ui/react";
+import { BASE_API_URL } from "../../handlers/api";
+
 
 interface InputGroupChatModal {
     selectedUsers:User[]
@@ -39,7 +41,7 @@ const InputGroupChatModel = ({selectedUsers,handleDelete,handleAddUser}:InputGro
           Authorization: `Bearer ${user?.token}`,
         },
       };
-      const { data } = await axios.get(`/api/user?search=${query}`, config);
+      const { data } = await axios.get(`${BASE_API_URL}/api/user?search=${query}`, config);
       // console.log(data, "Group Chat");
       setLoading(false);
       setSearchResult(data);

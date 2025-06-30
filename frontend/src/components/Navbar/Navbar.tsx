@@ -13,6 +13,8 @@ import { getSender } from "../../handlers/ChatLogics";
 import { ChatsAndNotifications } from "../../Interfaces/ChatsAndNotification";
 import axios from "axios";
 import { useMemo } from "react";
+import { BASE_API_URL } from "../../handlers/api";
+
 
 interface NavBar {
   fetchAgain: boolean;
@@ -63,7 +65,7 @@ const Navbar = ({ fetchAgain, setFetchAgain }: NavBar) => {
       };
 
       await axios.put(
-        "/api/notification/removeNotification",
+        `${BASE_API_URL}/api/notification/removeNotification`,
         {
           chatId: chat._id,
           userId: user?._id,

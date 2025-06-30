@@ -16,6 +16,9 @@ import Lottie from "react-lottie";
 import { ChatsAndNotifications } from "../../Interfaces/ChatsAndNotification";
 import { Message } from "../../Interfaces/Message";
 import animationData from "../../Animations/typing.json";
+import { BASE_API_URL } from "../../handlers/api";
+
+
 
 interface SingleChat {
   fetchAgain: boolean;
@@ -23,8 +26,7 @@ interface SingleChat {
 }
 const ENDPOINT: string =
   import.meta.env.VITE_ENV === "production"
-    ? "https://chat-app-zlfe.onrender.com"
-    : "http://localhost:5000";
+    ? "" : "http://localhost:5000";
 
 let socket: Socket;
 let selectedChatCompare: ChatsAndNotifications | null;
@@ -39,7 +41,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: SingleChat) => {
   const [socketConnected, setSocketConnected] = useState<boolean>(false);
   const [typing, setTyping] = useState<boolean>(false);
   const [isTyping, setIsTyping] = useState<boolean>(false);
-
+  // const [sentMessageLoading,setSentMessageLoading] = useState<boolean>(false)
   // console.log(isTyping, "IsTYping In Front end");
   // console.log(messages, "All Messages");
   const defaultOptions = {
@@ -76,7 +78,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: SingleChat) => {
       setLoading(true);
 
       const { data } = await axios.get(
-        `/api/message/${selectedChat._id}`,
+        `${BASE_API_URL}/api/message/${selectedChat._id}`,
         config
       );
       setMessages(data);
@@ -96,6 +98,19 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: SingleChat) => {
     e.preventDefault();
     socket.emit("stop typing", selectedChat?._id);
     if (newMessage) {
+      setMessages([
+        ...messages,
+        {
+          _id: "bjbxjqbuq767678687",
+          sender: {
+            _id: user!._id,
+            name: user!.name,
+            pic: user!.pic,
+          },
+          content: newMessage,
+          sentMessageloading:true
+        },
+      ]);
       try {
         const config = {
           headers: {
@@ -104,7 +119,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: SingleChat) => {
         };
         setNewMessage("");
         const { data } = await axios.post(
-          "/api/message",
+          `${BASE_API_URL}/api/message`,
           {
             content: newMessage,
             chatId: selectedChat?._id,
@@ -112,8 +127,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: SingleChat) => {
           config
         );
         // console.log(data, "data from singlechat");
-        socket.emit("new message", data);
-        setMessages([...messages, data]);
+        socket.emit("new message", {...data,sentMessageloading:true});
+        // setMessages([...messages, data]);
       } catch (error) {
         toaster.create({
           title: "Failed to Send Message",
@@ -174,7 +189,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: SingleChat) => {
       // console.log("Inside new message received");
       if (
         !selectedChatCompare ||
-        selectedChatCompare._id !== newMessageReceived.chat._id
+        selectedChatCompare._id !== newMessageReceived.chat?._id
       ) {
         console.log("Inside else loop of message received");
         timeoutId = setTimeout(() => {
@@ -184,6 +199,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: SingleChat) => {
       } else {
         console.log("Inside else statement of sender", usersOffline);
         if (newMessageReceived.sender._id === user?._id) {
+          setMessages([...messages.slice(0, -1), {...newMessageReceived,sentMessageloading:false}]);
           if (usersOffline.length === 0) {
             // console.log("users length === 0");
             return;

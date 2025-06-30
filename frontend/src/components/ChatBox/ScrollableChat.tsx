@@ -11,9 +11,9 @@ import { Avatar } from "@chakra-ui/react";
 import { css } from "@emotion/css";
 import { useScrollToBottom } from "react-scroll-to-bottom";
 import { useEffect } from "react";
-import './scrollable.css'
+import "./scrollable.css";
 import { Message } from "../../Interfaces/Message";
-
+import { FcClock } from "react-icons/fc";
 
 
 interface ScrollableChatProps {
@@ -25,20 +25,24 @@ const Content = ({ messages }: ScrollableChatProps) => {
   const scrollToBottom = useScrollToBottom();
 
   useEffect(() => {
-    scrollToBottom({behavior: "smooth"});
+    scrollToBottom({ behavior: "smooth" });
   }, [messages]);
-  
+
   return (
     <>
       {messages &&
         messages.map((m, i) => {
-          const tooltipId = `tooltip-${m._id}`
+          const tooltipId = `tooltip-${m._id}`;
           return (
-            <div style={{ display: "flex",alignItems:"center" }} key={m._id}>
+            <div style={{ display: "flex", alignItems: "center" }} key={m._id}>
               {user &&
                 (isSameSender(messages, m, i, user._id) ||
                   isLastMessage(messages, i, user._id)) && (
-                  <Tooltip content={m.sender.name} showArrow ids={{ trigger: tooltipId }} >
+                  <Tooltip
+                    content={m.sender.name}
+                    showArrow
+                    ids={{ trigger: tooltipId }}
+                  >
                     <Avatar.Root size="sm" key="sm" ids={{ root: tooltipId }}>
                       <Avatar.Fallback name={m.sender.name} />
                       <Avatar.Image
@@ -49,26 +53,30 @@ const Content = ({ messages }: ScrollableChatProps) => {
                     </Avatar.Root>
                   </Tooltip>
                 )}
-              <span
-                style={{
-                  backgroundColor: `${
-                    m.sender._id === user?._id ? "#BEE3F8" : "#B9F5D0"
-                  }`,
-                  borderRadius: "20px",
-                  padding: "5px 15px",
-                  maxWidth: "75%",
-                  marginLeft: isSameSenderMargin(
-                    messages,
-                    m,
-                    i,
-                    user && user._id
-                  ),
-                  marginTop: isSameUser(messages, m, i) ? 3 : 0,
-                }}
-                data-testid={`content-${m._id}`}
-              >
-                {m.content}
-              </span>
+              <>
+                <span
+                  style={{
+                    backgroundColor: `${
+                      m.sender._id === user?._id ? "#BEE3F8" : "#B9F5D0"
+                    }`,
+                    borderRadius: "20px",
+                    padding: "5px 15px",
+                    maxWidth: "75%",
+                    marginLeft: isSameSenderMargin(
+                      messages,
+                      m,
+                      i,
+                      user && user._id
+                    ),
+                    marginTop: isSameUser(messages, m, i) ? 3 : 0,
+                    display:"flex"
+                  }}
+                  data-testid={`content-${m._id}`}
+                >
+                  {m.content}
+                </span>
+                {m.sentMessageloading && <span><FcClock /></span>}
+              </>
             </div>
           );
         })}
@@ -85,7 +93,7 @@ const ROOT_CSS = css({
 
 const ScrollableChat = ({ messages }: ScrollableChatProps) => {
   return (
-    <ScrollToBottom className={`${ROOT_CSS} removeButton`} >
+    <ScrollToBottom className={`${ROOT_CSS} removeButton`}>
       <Content messages={messages} />
     </ScrollToBottom>
   );

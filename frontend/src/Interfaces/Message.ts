@@ -5,7 +5,7 @@ export interface Message {
     pic: string;
   };
   content: string;
-  chat: {
+  chat?: {
     _id: string;
     chatName: string;
     isGroupChat: boolean;
@@ -18,4 +18,5 @@ export interface Message {
     latestMessage: string;
   };
   _id: string;
+  sentMessageloading?:boolean
 }

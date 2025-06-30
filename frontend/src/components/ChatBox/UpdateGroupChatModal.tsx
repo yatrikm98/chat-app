@@ -12,7 +12,7 @@ import { useState } from "react";
 import { toaster } from "../ui/toaster";
 import UserBadgeItem from "../miscellaneous/UserBadgeItem";
 import axios from "axios";
-
+import { BASE_API_URL } from "../../handlers/api";
 import { User } from "../../Interfaces/User";
 import InputUpdateGroupChatModal from "./InputUpdateGroupChatModal";
 
@@ -57,7 +57,7 @@ const UpdateGroupChatModal = ({
         },
       };
       const { data } = await axios.put(
-        "/api/chat/groupremove",
+        `${BASE_API_URL}/api/chat/groupremove`,
         {
           chatId: selectedChat?._id,
           userId: userToRemove._id,
@@ -96,7 +96,7 @@ const UpdateGroupChatModal = ({
         },
       };
       const { data } = await axios.put(
-        "/api/chat/rename",
+        `${BASE_API_URL}/api/chat/rename`,
         {
           chatName: groupChatName,
           chatId: selectedChat?._id,
@@ -152,7 +152,7 @@ const UpdateGroupChatModal = ({
         },
       };
       const { data } = await axios.put(
-        "/api/chat/groupadd",
+        `${BASE_API_URL}/api/chat/groupadd`,
         {
           chatId: selectedChat?._id,
           userId: userToAdd._id,
@@ -184,7 +184,7 @@ const UpdateGroupChatModal = ({
         },
       };
       const { data } = await axios.put(
-        "/api/chat/groupremove",
+        `${BASE_API_URL}/api/chat/groupremove`,
         {
           chatId: selectedChat?._id,
           userId: user?._id,
