@@ -24,9 +24,7 @@ interface SingleChat {
   fetchAgain: boolean;
   setFetchAgain: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const ENDPOINT: string =
-  import.meta.env.VITE_ENV === "production"
-    ? "https://chat-app-1-l5rs.onrender.com" : "http://localhost:5000";
+const ENDPOINT: string = import.meta.env.VITE_ENV === "production" ? "https://chat-app-1-l5rs.onrender.com" : "http://localhost:5000";
 
 let socket: Socket;
 let selectedChatCompare: ChatsAndNotifications | null;
