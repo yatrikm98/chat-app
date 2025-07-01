@@ -9,7 +9,7 @@ const io = new Server(server, {
     cors: {
         origin: [
             'http://localhost:5173',
-            'https://chat-app-mu-two-98.vercel.app'
+            'https://chat-app-sand-two.vercel.app'
         ],
     },
 });
