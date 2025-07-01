@@ -26,7 +26,7 @@ interface SingleChat {
 }
 const ENDPOINT: string =
   import.meta.env.VITE_ENV === "production"
-    ? "" : "http://localhost:5000";
+    ? "https://chat-app-1-l5rs.onrender.com" : "http://localhost:5000";
 
 let socket: Socket;
 let selectedChatCompare: ChatsAndNotifications | null;
