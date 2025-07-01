@@ -211,7 +211,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: SingleChat) => {
             };
 
             await axios.post(
-              "/api/notification",
+              `${BASE_API_URL}/api/notification`,
               {
                 chatId: selectedChat?._id,
                 users: usersOffline,
@@ -223,7 +223,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: SingleChat) => {
           }
           return;
         } else {
-          setMessages([...messages, newMessageReceived]);
+          setMessages([...messages, {...newMessageReceived,sentMessageloading:false}]);
         }
       }
     };

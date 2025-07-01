@@ -137,7 +137,7 @@ const MyChats = ({ fetchAgain, setFetchAgain }: MyChats) => {
       };
 
       await axios.put(
-        "/api/notification/removeNotification",
+        `${BASE_API_URL}/api/notification/removeNotification`,
         {
           chatId: chat._id,
           userId: user?._id,
